@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>登录</title>
+    <style>
+      a {
+        font-size: 20px;
+        color: blue;
+        text-decoration: none;
+        width: fit-content;
+        text-shadow: black;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
+      input {
+        margin: 20px;
+        height: 26px;
+        width: 200px;
+      }
+    </style>
+  </head>
+</html>
+
+<body>
+  <script>
+    function login() {
+      let uname = document.getElementById("uname").value
+      let password = document.getElementById("password").value
+      console.log(uname)
+      let obj = new XMLHttpRequest()
+      let data = {
+        uname: "admin",
+        password: "ImmutableMultiDict([])zq"
+      }
+      let data1 = JSON.stringify(data)
+      obj.onreadystatechange = function () {
+        console.log(1)
+        if (obj.readyState == 4 && obj.status == 200) {
+          console.log("fanhi" + obj.responseText)
+        }
+      }
+      obj.open("POST", "http://127.0.0.1:5000/hello", true)
+      obj.setRequestHeader("Content-Type", "application/json")
+      console.log("data1:" + data1)
+      obj.send(data1)
+    }
+  </script>
+  <form
+    style="
+      height: 980px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    "
+  >
+    <span>账号:</span>
+    <input id="uname" type="text" placeholder="请输入账号" />
+    <input id="password" type="password" placeholder="请输入密码" />
+    <input
+      onclick="login()"
+      type="button"
+      value="登录1"
+      style="
+        color: chocolate;
+        background-color: aqua;
+        width: 120px;
+        height: 40px;
+      "
+    />
+  </form>
+</body>
